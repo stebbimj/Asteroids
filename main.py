@@ -1,26 +1,36 @@
 import pygame
 from constants import *
-from circleshape import *
-from player import *
+from player import Player
+#from circleshape import CircleShape
 
 def main():
     print("Starting Asteroids!")
+
+    #intialize pygame, variables and group
     pygame.init()
-    clock= pygame.time.Clock()
+    clock = pygame.time.Clock()
     dt = 0
-    player1 = player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
-    #print(f"Screen width: {constants.SCREEN_WIDTH}")
-    #print(f"Screen height: {constants.SCREEN_HEIGHT}")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    #adding attribute to class     
+    Player.containers = (updatable, drawable)
+
+    #calling class objects
+    player = Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
+    
     while True:    
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-    # Draw a black square inside the game area and redraw it as long as the program runs
+        updatable.update(dt)
         screen.fill((0,0,0))
-        player1.draw(screen)
-        player1.update(dt)
+        
+        for obj in drawable:
+            obj.draw(screen)
+            
 
         pygame.display.flip()
 
