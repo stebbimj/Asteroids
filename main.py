@@ -20,6 +20,7 @@ def main():
     # Draw a black square inside the game area and redraw it as long as the program runs
         screen.fill((0,0,0))
         player1.draw(screen)
+        player1.update(dt)
 
         pygame.display.flip()
 
