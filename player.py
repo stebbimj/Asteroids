@@ -38,10 +38,10 @@ class Player(CircleShape):
             self.GCD -= dt
 
         if keys[pygame.K_a]:
-            self.rotation += self.rotate(dt)
+            self.rotation -= self.rotate(dt)
 
         if keys[pygame.K_d]:
-            self.rotation -= self.rotate(dt)
+            self.rotation += self.rotate(dt)
 
         if keys[pygame.K_w]:
             forward = pygame.Vector2(0, 1).rotate(self.rotation)

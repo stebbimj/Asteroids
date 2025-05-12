@@ -1,4 +1,5 @@
 import pygame
+import random
 from constants import *
 from player import Player
 from asteroids import Asteroid
@@ -46,7 +47,12 @@ def main():
                 return            
             for shot in shots:
                 if shot.collision(asteroid):
-                    asteroid.kill()
+                    if asteroid.split():
+                        asteroid.kill()
+                    else:
+                        asteroidfield.spawn(asteroid.radius - ASTEROID_MIN_RADIUS, asteroid.position, asteroid.velocity.rotate(random.randint(20, 50)) * 1.2)
+                        asteroidfield.spawn(asteroid.radius - ASTEROID_MIN_RADIUS, asteroid.position, asteroid.velocity.rotate(-random.randint(20, 50)) * 1.2)
+                        asteroid.kill()
                     shot.kill()
 
         pygame.display.flip()
