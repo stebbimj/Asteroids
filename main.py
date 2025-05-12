@@ -46,7 +46,8 @@ def main():
                 return            
             for shot in shots:
                 if shot.collision(asteroid):
-                    print("Pew Pew Hit!")
+                    asteroid.kill()
+                    shot.kill()
 
         pygame.display.flip()
 
